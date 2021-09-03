@@ -1,11 +1,42 @@
 {
-  "name": "appanimalesinstagram",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Manuel Valencia <manueldeveloper17@gmail.com>",
-  "license": "ISC"
+    "name": "appanimalesinstagram",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "now-build": "npm run build",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "webpack",
+        "dev": "webpack serve --mode development --env development",
+        "lint": "semistandard",
+        "lint-fix": "semistandard --fix"
+    },
+    "author": "Manuel Valencia <manueldeveloper17@gmail.com>",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/core": "^7.15.0",
+        "@babel/preset-env": "^7.15.0",
+        "@babel/preset-react": "^7.14.5",
+        "babel-loader": "^8.2.2",
+        "html-webpack-plugin": "^5.3.2",
+        "semistandard": "^16.0.1",
+        "webpack": "^5.51.1",
+        "webpack-cli": "^4.8.0",
+        "webpack-dev-server": "^4.1.0"
+    },
+    "dependencies": {
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "styled-components": "^5.3.1"
+    },
+    "standard": {
+        "ignore": [
+            "/api/**"
+        ]
+    },
+    "eslintConfig": {
+        "extends": [
+            "./node_modules/standard/eslintrc.json"
+        ]
+    }
 }
