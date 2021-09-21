@@ -1,17 +1,20 @@
 // Importando React
-import React, { Fragment } from 'react';
-// Importando componente Category
+import React from 'react';
+// Importando componente ListOfCategories
 import { ListOfCategories } from './components/ListOfCategories';
+// Importando componente ListOfPhotoCards
+import { ListOfPhotoCards } from './components/ListOfPhotoCards';
+// Importando componente Logo
+import {Logo} from './components/Logo';
 // Importando estilos globales
-import { GlobalStyle } from './GlobalStyles';
+import { GlobalStyle } from './styles/GlobalStyles';
 
-function App () {
-  return (
-    <>
-      <GlobalStyle />
-      <ListOfCategories />
-    </>
-  );
-}
+export const App = () => (
+  <div>
+    <GlobalStyle />
+    <Logo />
+    <ListOfCategories />
+    <ListOfPhotoCards />
+  </div>
+)
 
-export default App;

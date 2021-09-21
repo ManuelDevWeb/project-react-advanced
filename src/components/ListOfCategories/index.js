@@ -4,15 +4,23 @@ import React from 'react';
 import { Category } from '../Category';
 // Importando estilos
 import { List, Item } from './styles';
+import DB from '../../../api/db.json';
 
 export const ListOfCategories = () => {
+  // Destructurando las caterogies de la DB
+  const {categories}=DB;
+
   return (
     <List>
       {
-                [1, 2, 3, 4, 5, 6].map(category => (
-                  <Item key={category}><Category /></Item>
-                ))
-            }
+        categories.map(category => (
+            <Item key={category.id}>
+              <Category 
+                {...category}
+              />
+            </Item>
+        ))
+      }
     </List>
   );
 };
