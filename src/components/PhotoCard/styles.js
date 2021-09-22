@@ -3,6 +3,11 @@ import styled from 'styled-components';
 // Importando animaciones
 import { fadeIn } from '../../styles/animation';
 
+// Estilos al article
+export const Article = styled.article `
+    min-height: 200px;
+`;
+
 // Estilos a la etiqueta div
 export const ImgWrapper = styled.div `
     border-radius: 10px;
