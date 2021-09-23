@@ -17,7 +17,7 @@ import { ListOfPhotoCardsComponent } from '../components/ListOfPhotoCards';
 
 export const ListOfPhotoCards = ({categoryId})=>{
     // Llamamos la query con el método useQuery y le enviamos las variables necesarias.
-    // Obtenemos los props que vienen desde la query de withPhotos.
+    // Obtenemos los props que vienen desde la query de getPhotos.
     const {loading, error, data}=useQuery(getPhotos, {variables: {categoryId}});
 
     if(error){
