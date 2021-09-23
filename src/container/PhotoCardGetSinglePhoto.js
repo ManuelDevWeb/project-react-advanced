@@ -13,7 +13,7 @@ import { PhotoCard } from '../components/PhotoCard';
 import {gql, useQuery} from "@apollo/client";
 
 // Query para obtener una foto por categoryId, (Podemos indicar cuales parametros queremos obtener del elemento photo)
-const getSinglePhoto=gql`
+const GET_SINGLE_PHOTO=gql`
     query getSinglePhoto($id:ID!){
         photo(id:$id){
             id
@@ -26,11 +26,12 @@ const getSinglePhoto=gql`
     }
 `;
 
-export const PhotoCardGetSinglePhoto=({id})=>{
+// Función encargada de renderizar
+const renderProp=(id)=>{
     // Llamamos la query con el método useQuery y le enviamos las variables necesarias.
     // Obtenemos los props que vienen desde la query de getSinglePhoto.
-    const {loading, error, data}=useQuery(getSinglePhoto, {variables: {id}});
-
+    const {loading, error, data}=useQuery(GET_SINGLE_PHOTO, {variables: {id}});
+    
     if(error){
         return <h2>Internal Server Error</h2>
     }
@@ -41,3 +42,9 @@ export const PhotoCardGetSinglePhoto=({id})=>{
     // Enviamos al componente PhotoCard la data de la Photo
     return <PhotoCard {...data.photo}/>
 }
+
+
+export const PhotoCardGetSinglePhoto=({id})=>(
+    // Llamamos la función
+    renderProp(id)
+)

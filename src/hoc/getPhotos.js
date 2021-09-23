@@ -11,7 +11,7 @@
 import { gql } from "@apollo/client";
 
 // Query para obtener todas las fotos por categoryId, (Podemos indicar cuales parametros queremos obtener del elemento photos)
-export const getPhotos = gql `
+export const GET_PHOTOS = gql `
     query getPhotos($categoryId: ID){
         photos(categoryId: $categoryId){
             id

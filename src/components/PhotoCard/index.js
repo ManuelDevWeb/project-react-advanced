@@ -1,9 +1,11 @@
 // Importando React
 import React, {Fragment, useEffect, useRef, useState} from 'react';
+// Importando componente FavButton
+import FavButton from '../FavButton';
+// Importando container ToggleLikeMutation
+import { ToggleLikeMutation } from '../../container/ToggleLikeMutation';
 // Importando estilos
-import {ImgWrapper, Img, Button, Article} from './styles';
-// Importando iconos
-import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
+import {ImgWrapper, Img, Article} from './styles';
 // Importando hooks personalizado
 import {useLocalStorage} from '../../hooks/useLocalStorage';
 import {useNearScreen} from '../../hooks/useNearScreen';
@@ -18,8 +20,21 @@ export const PhotoCard=({id, likes=0, src=DEFAULT_IMAGE})=>{
     const [liked, setLiked]=useLocalStorage(key, false);
     const [show, refElement]=useNearScreen();
 
-    // Validando el valor de liked para asignar el icono
-    const Icon=liked ? MdFavorite : MdFavoriteBorder;
+    const {mutation, mutationLoading, mutationError}=ToggleLikeMutation();
+
+    // Función que se ejecuta al dar click sobre el button
+    const handleFavClick=()=>{
+        // Si le damos like a la foto, hacemos la mutación (Incrementamos el número de likes)
+        !liked && mutation({
+            variables: {
+              input: { id }
+            }
+        })
+        
+        setLiked(!liked);
+    }
+
+    // console.log('{ mutation, mutationLoading, mutationError }', { mutation, mutationLoading, mutationError })
 
     return(
         <Article ref={refElement}>
@@ -32,9 +47,7 @@ export const PhotoCard=({id, likes=0, src=DEFAULT_IMAGE})=>{
                         </ImgWrapper>
                     </a>
 
-                    <Button onClick={()=>setLiked(!liked)}>
-                        <Icon size='28px'/> {likes} likes!  
-                    </Button>
+                    <FavButton liked={liked} likes={likes} onClick={handleFavClick}/>
                 </Fragment>
                 :
                 null
