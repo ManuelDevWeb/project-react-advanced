@@ -1,38 +1,58 @@
 // Importando React
 import React from 'react';
-// Importando container PhotoCardGetSinglePhoto
-import { PhotoCardGetSinglePhoto } from './container/PhotoCardGetSinglePhoto';
 // Importando page Home
 import { Home } from './pages/Home';
+// Importando page Detail
+import { Detail } from './pages/Detail';
+// Importando page Favs
+import { Favs } from './pages/Favs';
+// Importando page NotRegisteredUser
+import { NotRegisteredUser } from './pages/NotRegisteredUser';
+// Importando page User
+import { User } from './pages/User';
+// Importando el Contexto
+import Context from './Context';
 // Importando componente Logo
 import {Logo} from './components/Logo';
+// Importando componente NavBar
+import {NavBar} from './components/NavBar';
 // Importando estilos globales
 import { GlobalStyle } from './styles/GlobalStyles';
 // Importando elementos de reachRouter
 import {Router} from '@reach/router';
 
-export const App = () => {
-  // Almacenando los parametros de la URL
-  const urlParams=new window.URLSearchParams(window.location.search);
-  // Almacenando el valor del detailId de la URL
-  const detailId=urlParams.get('detail');
-  // console.log(detailId);
 
+export const App = () => {
   return (
     <div>
       <GlobalStyle />
       <Logo />
-      {
-        detailId 
-        ? <PhotoCardGetSinglePhoto id={detailId}/>
-        : 
-        // Rutas de nuestra aplicación
-        <Router>
+      {/* Rutas de nuestra aplicación */}
+      <Router>
           <Home path='/'/>
           <Home path='/pet/:categoryId'/>
-        </Router>
-      }
-      
+          <Detail path='/detail/:detailId'/>
+      </Router>
+      <Context.Consumer>
+        {
+          // Accediendo a las render props que declaremos en el Provider
+          ({isAuth})=>
+            isAuth
+            // Autentificado
+            ? 
+            <Router>
+              <Favs path='/favs'/>
+              <User path='/user'/>
+            </Router>
+            // No Autentificado
+            :
+            <Router>
+              <NotRegisteredUser path='/favs'/>
+              <NotRegisteredUser path='/user'/>
+            </Router>   
+        }
+      </Context.Consumer>
+      <NavBar />
     </div>
   )
 } 

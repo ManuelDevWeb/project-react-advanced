@@ -3,6 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // Importando componentes de Apollo
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+// Importando Context
+import Context from './Context';
 // Importando componente App
 import { App } from './App';
 
@@ -14,8 +16,10 @@ const client=new ApolloClient({
 });
 
 ReactDOM.render(
-    <ApolloProvider client={client}>
-        <App />
-    </ApolloProvider>,
+    <Context.Provider>
+        <ApolloProvider client={client}>
+            <App />
+        </ApolloProvider>
+    </Context.Provider>,
     document.getElementById('app')
 )

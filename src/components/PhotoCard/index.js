@@ -1,5 +1,7 @@
 // Importando React
-import React, {Fragment, useEffect, useRef, useState} from 'react';
+import React, {Fragment} from 'react';
+// Importando Link
+import { Link } from '@reach/router';
 // Importando componente FavButton
 import FavButton from '../FavButton';
 // Importando container ToggleLikeMutation
@@ -41,18 +43,17 @@ export const PhotoCard=({id, likes=0, src=DEFAULT_IMAGE})=>{
             {
                 show ?
                 <Fragment>
-                    <a href={`/?detail=${id}`}>
+                    <Link to={`/detail/${id}`}>
                         <ImgWrapper>
                             <Img src={src}/>
                         </ImgWrapper>
-                    </a>
+                    </Link>
 
                     <FavButton liked={liked} likes={likes} onClick={handleFavClick}/>
                 </Fragment>
                 :
                 null
             }
-            
         </Article>
     )
 }
