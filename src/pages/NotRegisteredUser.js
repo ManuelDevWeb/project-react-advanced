@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 // Importando Contexto
-import Context from '../Context';
+import { Context } from '../Context';
 // Importando componente UserForm
 import { UserForm } from '../components/UserForm';
 // Importando container RegisterMutation
@@ -9,20 +9,13 @@ import { RegisterMutation } from '../container/RegisterMutation';
 import {LoginMutation} from '../container/LoginMutation';
 
 export const NotRegisteredUser = () => {
+  const { activateAuth } = useContext(Context);
+
   return (
-    <Context.Consumer>
-      {
-        // Accediendo a las render props que declaremos en el Provider
-        ({activateAuth}) => {
-          return (
-            <Fragment>
-              <Registro activateAuth={activateAuth}/>
-              <Login activateAuth={activateAuth}/>
-            </Fragment>
-          );
-        }
-      }
-    </Context.Consumer>
+    <Fragment>
+      <Registro activateAuth={activateAuth} />
+      <Login activateAuth={activateAuth} />
+    </Fragment>
   );
 };
 
@@ -36,7 +29,12 @@ const Registro=({activateAuth})=>{
 
     // Una vez el registro vaya bien, ejecutamos el activateAuth para autentificar al usuario
     registerMutation({ variables })
-      .then(activateAuth);
+      .then(response=>{
+        // console.log(response);
+        const {data:{signup}}=response;
+        // Pasando el token  signup a la funcion
+        activateAuth(signup);
+      });
   };
 
   // Si hay un error se crea el mensaje
@@ -57,7 +55,12 @@ const Login=({activateAuth})=>{
 
     // Una vez el registro vaya bien, ejecutamos el activateAuth para autentificar al usuario
     loginMutation({ variables })
-      .then(activateAuth);
+      .then(response=>{
+        // console.log(response);
+        const {data:{login}}=response;
+        // Pasando el token login a la funcion
+        activateAuth(login);
+      });
   };
 
   // Si hay un error se crea el mensaje

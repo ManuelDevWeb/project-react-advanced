@@ -8,32 +8,26 @@ import FavButton from '../FavButton';
 import { ToggleLikeMutation } from '../../container/ToggleLikeMutation';
 // Importando estilos
 import {ImgWrapper, Img, Article} from './styles';
-// Importando hooks personalizado
-import {useLocalStorage} from '../../hooks/useLocalStorage';
 import {useNearScreen} from '../../hooks/useNearScreen';
 
 const DEFAULT_IMAGE="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
 
-export const PhotoCard=({id, likes=0, src=DEFAULT_IMAGE})=>{
-    // Key personalizada para cada photoCard
-    const key=`like-${id}`;
+export const PhotoCard=({id, likes=0,liked, src=DEFAULT_IMAGE})=>{
 
     // Llamando y enviando valores al hook personalizado
-    const [liked, setLiked]=useLocalStorage(key, false);
     const [show, refElement]=useNearScreen();
 
     const {mutation, mutationLoading, mutationError}=ToggleLikeMutation();
 
     // Función que se ejecuta al dar click sobre el button
     const handleFavClick=()=>{
-        // Si le damos like a la foto, hacemos la mutación (Incrementamos el número de likes)
-        !liked && mutation({
+        // Hacemos la mutación (Incrementamos el número de likes)
+        mutation({
             variables: {
               input: { id }
             }
         })
         
-        setLiked(!liked);
     }
 
     // console.log('{ mutation, mutationLoading, mutationError }', { mutation, mutationLoading, mutationError })
