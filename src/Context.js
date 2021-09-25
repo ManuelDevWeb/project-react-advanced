@@ -22,6 +22,7 @@ const Provider=({children})=>{
         setIsAuth(false);
         // Removiendo token del sessioStorage
         window.sessionStorage.removeItem("token");
+        // Reseteando cliente de apollo para así limpiar la cache cuando cambia el estado de autenticación, ya sea si se inicia o se cierra una sesión.
         client.resetStore();
       },
     };
