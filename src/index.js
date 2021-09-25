@@ -47,7 +47,7 @@ const errorMiddleware=onError(
 
 
 // Inicializando cliente de Apollo
-const client=new ApolloClient({
+export const client=new ApolloClient({
     cache: new InMemoryCache(),
     link: from([
         errorMiddleware,
