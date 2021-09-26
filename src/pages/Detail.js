@@ -1,9 +1,13 @@
 import React from 'react';
 // Importando container PhotoCardGetSinglePhoto
 import { PhotoCardGetSinglePhoto } from '../container/PhotoCardGetSinglePhoto';
+// Importando compononente Layout
+import {Layout} from '../components/Layout';
 
 export const Detail=({detailId})=>{
     return(
-        <PhotoCardGetSinglePhoto id={detailId}/>
+        <Layout title={`Fogotafria ${detailId}`}>
+            <PhotoCardGetSinglePhoto id={detailId}/>
+        </Layout>
     )
 }
