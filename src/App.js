@@ -1,11 +1,11 @@
 // Importando React
-import React, {useContext} from 'react';
+import React, {useContext, Suspense} from 'react';
 // Importando page Home
 import { Home } from './pages/Home';
 // Importando page Detail
 import { Detail } from './pages/Detail';
 // Importando page Favs
-import { Favs } from './pages/Favs';
+// import { Favs } from './pages/Favs';
 // Importando page NotRegisteredUser
 import { NotRegisteredUser } from './pages/NotRegisteredUser';
 // Importando page User
@@ -23,12 +23,16 @@ import { GlobalStyle } from './styles/GlobalStyles';
 // Importando elementos de reachRouter
 import {Router, Redirect} from '@reach/router';
 
+// Favs solo se carga cuando se necesite
+const Favs= React.lazy(()=> import('./pages/Favs'));
+
 
 export const App = () => {
   const {isAuth}=useContext(Context);
+
   return (
-    <div>
-      <GlobalStyle />
+    <Suspense fallback={<div />}>
+      <GlobalStyle/>
       <Logo />
       {/* Rutas de nuestra aplicación */}
       <Router>
@@ -57,7 +61,7 @@ export const App = () => {
         <User path="/user" />
       </Router>
       <NavBar />
-    </div>
+    </Suspense>
   );
 } 
 
