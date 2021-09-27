@@ -6,8 +6,10 @@
     "scripts": {
         "now-build": "npm run build",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "webpack",
+        "build": "webpack --mode development",
         "dev": "webpack serve --mode development --env development --history-api-fallback",
+        "start:dev": "npx serve build -s",
+        "serve:dev": "webpack --mode development && npx serve dist -s",
         "lint": "semistandard",
         "lint-fix": "semistandard --fix"
     },

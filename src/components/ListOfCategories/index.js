@@ -30,7 +30,7 @@ function useCategoriesData(){
   return {categories, loading}
 }
 
-export const ListOfCategories = () => {
+ const ListOfCategoriesComponent = () => {
   const {categories, loading}= useCategoriesData();
   
   // Estado para saber si está fija
@@ -83,3 +83,6 @@ export const ListOfCategories = () => {
     </Fragment>
   );
 };
+
+// Evitar que se vuelva a renderizar el componente si no han cambiado sus props
+export const ListOfCategories=React.memo(ListOfCategoriesComponent)
