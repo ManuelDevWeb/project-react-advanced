@@ -1,0 +1,42 @@
+{
+  "icons": [
+    {
+      "src": "/icon_512x512.f14441b0393169be9d1adf29c8597778.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_384x384.61a8852a29d49c471acba45df43b9ca5.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_256x256.e3796e1c849ce659285009506305d44c.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_192x192.ae1183baebf58806a3dff2b6b37b8511.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_128x128.17140324c5dd7d16a662f6ef1e9563af.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_96x96.99fecec30b11ccab2dc816cd9446256d.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "name": "Petgram - Tu App de fotos de mascotas",
+  "short_name": "Pettgram 🐶",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "Con Petgram puedes encontrar y subir fotos de animales domésticos.",
+  "background_color": "#FFF",
+  "theme_color": "#b1a"
+}
