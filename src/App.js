@@ -23,7 +23,7 @@ import { GlobalStyle } from './styles/GlobalStyles';
 // Importando elementos de reachRouter
 import {Router, Redirect} from '@reach/router';
 
-// Favs solo se carga cuando se necesite
+// Lazy permite que Favs solo se carga cuando se necesite (Se hace lo mismo con los demas componentes, )
 const Favs= React.lazy(()=> import('./pages/Favs'));
 
 
